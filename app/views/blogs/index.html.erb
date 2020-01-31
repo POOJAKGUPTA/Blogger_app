@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Blogs</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_blog_path, class: 'btn btn-primary' do %>
+    Add New Post
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Title</th>
+            <th>Body</th>
+            <th>Image</th>
+            <th>Posted By</th>
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+       <% @blogs.each do |blog| %>
+        <%= content_tag :tr, id: dom_id(blog), class: dom_class(blog) do %>
+          
+
+                      <td><%= blog.title %></td>
+                      <td><%= blog.body %></td>
+                  <% if blog.image_url %>
+                    <td><%= image_tag blog.image.url(:thumb) %></td>
+                  <%else%>
+                    <td><img src="" alt="no image for blog"></td>
+                    <% end %>
+           <td><%= blog.user.name %></td>
+            <td><%= link_to 'Show', blog %>
+              <%if current_user%>
+           <%if blog.user_id == current_user.id %>
+            <%= link_to 'Edit', edit_blog_path(blog) %>
+            <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
+        <%end%>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
