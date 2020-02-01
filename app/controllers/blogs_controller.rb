@@ -7,6 +7,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1
   def show
+    @blog = Blog.find_by(id: params[:id])
   end
 
   # GET /blogs/new
