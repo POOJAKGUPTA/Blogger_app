@@ -71,7 +71,7 @@
         <div class="col-md-4">
           <% comment.replies.each do |reply| %>
           <br />
-          <strong>   <%= reply.comment.user.name %> </strong> <%= link_to "replied" %> <%= reply.body %>
+          <strong>   <%= reply.user.name  rescue nil %> </strong> <%= link_to "replied" %> <%= reply.body %>
           <%end%>
         </div>
       </div>
